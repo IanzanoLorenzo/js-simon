@@ -22,15 +22,15 @@ function createRandomArray(min, max, lengthOfArray){
 }
 
 //funzione che confronta i numeri che fa inserire con un array
-function arrayNumUtente(array, arrayControllo){
-    for(let x = 0; x < arrayControllo.length; x++){
+function arrayNumUtente(array, arrayConfronto){
+    for(let x = 0; x < arrayConfronto.length; x++){
         let num = prompt('Inserisci i numeri che hai visto uno alla volta').trim();
         let numArray = num.split(' ');
         const quantityOfArrayItems = numArray.length
         //se viene annullato il prompt conclude subito l'operazione
         if(num === null){
             num = ' '
-            x = arrayControllo.length
+            x = arrayConfronto.length
         }
         //ciclo che rimuove gli spazi vuoti nell'array
         for(let i = 0; i < quantityOfArrayItems ; i++){
@@ -40,8 +40,8 @@ function arrayNumUtente(array, arrayControllo){
             } 
         }
         //ciclo che inserisce i valori validi all'interno dei numeri esatti
-        for(let i = 0; i < arrayControllo.length ; i++){
-            if (arrayControllo.includes(parseInt(numArray[i])) && !array.includes(numArray[i])){
+        for(let i = 0; i < arrayConfronto.length ; i++){
+            if (arrayConfronto.includes(parseInt(numArray[i])) && !array.includes(numArray[i])){
                 array.push(numArray[i]);
             }
             if (numArray.length !== 1){
@@ -56,13 +56,13 @@ function arrayNumUtente(array, arrayControllo){
 playButton.addEventListener('click', function() {
     let numeriGioco = createRandomArray(1, 99, 5);
     let numeriGiusti = [];
-    let time = 5;
+    let time = 30;
     setTimeout(function(){
         messageText.innerText = numeriGioco;
     }, 1000)
     //funzione timer
     let timer = setInterval(function(){
-        timerShow.innerText = time
+        timerShow.innerText = time + 's'
         if(time === 0){
             clearInterval(timer)
         }
@@ -72,7 +72,7 @@ playButton.addEventListener('click', function() {
     setTimeout(function(){
         messageText.innerText = 'Ricorda i numeri';
         console.log(numeriGioco);//cheat
-    }, 6000)
+    }, 31000)
     //funzione che scrive un messaggio in base al risultato
     setTimeout(function(){
         arrayNumUtente(numeriGiusti, numeriGioco);
@@ -85,6 +85,6 @@ playButton.addEventListener('click', function() {
         } else{
             messageText.innerHTML = `Hai individuato ${numeriGiusti.length} numeri: ${numeriGiusti}`;
         }
-    }, 6100)
+    }, 31100)
 
 })
